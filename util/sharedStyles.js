@@ -1,5 +1,3 @@
-import { css } from '@emotion/react';
-
 // Theme1
 // Backgrounds
 export const mainBackground = '#2b4173';
