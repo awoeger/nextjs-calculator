@@ -1,13 +1,13 @@
 // Theme1
 // Backgrounds
-export const mainBackground = '#2b4173';
+export const background = '#2b4173';
 export const keypadBackground = '#232c43';
-export const screenBackground = '#182034';
+export const outputBackground = '#182034';
+export const screenBackground = '#637097';
 
 // Keys
-export const screenBackground = '#637097';
-export const keyShadow = '#404E72';
 
+export const blueKeyShadow = '#404E72';
 export const redToggle = '#D03F2F';
 export const redDarkToggle = '#93261A';
 
