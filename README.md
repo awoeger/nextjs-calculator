@@ -19,3 +19,6 @@ Users should be able to:
 - Adjust the color theme based on their preference
 
 ### Screenshot
+
+![DarkMode](./public/Screenshot1.PNG)
+![LightMode](./public/Screenshot2.PNG)
