@@ -1,4 +1,6 @@
-// Theme1
+import { css } from '@emotion/react';
+
+// Theme1 - Dark
 // Backgrounds
 export const background = '#2b4173';
 export const keypadBackground = '#232c43';
@@ -6,7 +8,6 @@ export const outputBackground = '#182034';
 export const screenBackground = '#637097';
 
 // Keys
-
 export const blueKeyShadow = '#404E72';
 export const redToggle = '#D03F2F';
 export const redDarkToggle = '#93261A';
@@ -17,61 +18,237 @@ export const orangeKeyShadow = '#B4A597';
 // Text
 export const grayBlue = '#444B5A';
 
-//Theme 2
-
+//Theme 2 - Light
 // Backgrounds
+export const mainBackgroundLight = '#e6e6e6';
+export const keyPadBackgroundLight = '#d1cccc';
+export const screenBackgroundLight = '#ededed';
 
-// - Light gray (main background): hsl(0, 0%, 90%)
-// - Grayish red (toggle background, keypad background): hsl(0, 5%, 81%)
-// - Very light gray (screen background): hsl(0, 0%, 93%)
+// Keys
+export const keyBackgroundBlueLight = '#377f86';
+export const keyBackgroundBlueShadowLight = '#1b5f65';
+export const keyBackgroundRedLight = '#ca5502';
+export const keyBackgroundRedShadowLight = '#893901';
+export const keyBackgroundGrayLight = '#e5e4e1';
+export const keyBackgroundGrayShadowLight = '#a69d91';
 
-// #### Keys
+// Text
+export const grayLight = '#35352c';
 
-// - Dark moderate cyan (key background): hsl(185, 42%, 37%)
-// - Very dark cyan (key shadow): hsl(185, 58%, 25%)
+// CSS
+export const header = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-// - Orange (key background, toggle): hsl(25, 98%, 40%)
-// - Dark orange (key shadow): hsl(25, 99%, 27%)
+  h1,
+  span {
+    font-size: 0.8em;
+    color: white;
+    padding: 0 30px;
+  }
 
-// - Light grayish yellow (key background): hsl(45, 7%, 89%)
-// - Dark grayish orange (key shadow): hsl(35, 11%, 61%)
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 
-// #### Text
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 
-// - Very dark grayish yellow: hsl(60, 10%, 19%)
-// - White (text): hsl(0, 0, 100%)
+  .sliderRound {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${keypadBackground};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50px;
+  }
 
-// ### Theme 3
+  .sliderRound:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: ${redToggle};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
 
-// #### Backgrounds
+  input:checked + .sliderRound {
+    background-color: ${keypadBackground};
+  }
 
-// - Very dark violet (main background): hsl(268, 75%, 9%)
-// - Very dark violet (toggle background, keypad background, screen background): hsl(268, 71%, 12%)
+  input:focus + .sliderRound {
+    box-shadow: 0 0 1px ${keypadBackground};
+  }
 
-// #### Keys
+  input:checked + .sliderRound:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+`;
 
-// - Dark violet (key background): hsl(281, 89%, 26%)
-// - Vivid magenta (key shadow): hsl(285, 91%, 52%)
+// DarkMode
+export const mainContainerDark = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #505d84;
+  height: 100vh;
+`;
 
-// - Pure cyan (key background, toggle): hsl(176, 100%, 44%)
-// - Soft cyan (key shadow): hsl(177, 92%, 70%)
+export const outputContainerDark = css`
+  background: ${outputBackground};
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 
-// - Very dark violet (key background): hsl(268, 47%, 21%)
-// - Dark magenta (key shadow): hsl(290, 70%, 36%)
+  input {
+    background: ${outputBackground};
+    color: white;
+    border: none;
+    font-size: 1em;
+    text-align: right;
+  }
+`;
 
-// #### Text
+export const calculatorContainerDark = css`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 25px 25px;
+  grid-template-areas:
+    '. . . .'
+    '. . . .'
+    '. . . .'
+    '. . . .'
+    'reset reset equal equal';
+  justify-items: stretch;
+  width: 100%;
+  height: 100%;
+  background: ${keypadBackground};
+  padding: 25px;
+  border-radius: 10px;
 
-// - Light yellow: hsl(52, 100%, 62%)
-// - Very dark blue: hsl(198, 20%, 13%)
-// - White (text): hsl(0, 0, 100%)
+  .reset {
+    grid-area: reset;
+    background: hsl(225, 21%, 49%);
+    box-shadow: 0 5px 0 0 ${blueKeyShadow};
+    color: white;
+  }
 
-// ## Typography
+  .equal {
+    grid-area: equal;
+    background: ${redToggle};
+    box-shadow: 0 5px 0 0 ${redDarkToggle};
+    color: white;
+  }
 
-// ### Body Copy
+  button {
+    font-size: 1em;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 0 0 ${orangeKeyShadow};
+    background: ${grayOrangeKeyBackground};
+    color: ${grayBlue};
+    padding: 10px;
+  }
 
-// - Font size (numbers): 32px
+  .blueButton {
+    background: hsl(225, 21%, 49%);
+    box-shadow: 0 5px 0 0 ${blueKeyShadow};
+    color: white;
+  }
+`;
 
-// ### Font
+// Light Mode
+export const mainContainerLight = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: ${screenBackgroundLight};
+  height: 100vh;
+`;
 
-// - Family: [Spartan](https://fonts.google.com/specimen/Spartan)
-// - Weights: 700
+export const outputContainerLight = css`
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+  input {
+    background: white;
+    color: ${grayLight};
+    border: none;
+    font-size: 1em;
+    text-align: right;
+  }
+`;
+
+export const calculatorContainerLight = css`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 25px 25px;
+  grid-template-areas:
+    '. . . .'
+    '. . . .'
+    '. . . .'
+    '. . . .'
+    'reset reset equal equal';
+  justify-items: stretch;
+  width: 100%;
+  height: 100%;
+  background: ${keyPadBackgroundLight};
+  padding: 25px;
+  border-radius: 10px;
+
+  .reset {
+    grid-area: reset;
+    background: ${keyBackgroundBlueLight};
+    box-shadow: 0 5px 0 0 ${keyBackgroundBlueShadowLight};
+    color: white;
+  }
+
+  .equal {
+    grid-area: equal;
+    background: ${keyBackgroundRedLight};
+    box-shadow: 0 5px 0 0 ${keyBackgroundRedShadowLight};
+    color: white;
+  }
+
+  button {
+    font-size: 1em;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 0 0 ${keyBackgroundGrayShadowLight};
+    background: ${keyBackgroundGrayLight};
+    color: ${grayLight};
+    padding: 10px;
+  }
+
+  .blueButton {
+    background: ${keyBackgroundBlueLight};
+    box-shadow: 0 5px 0 0 ${keyBackgroundBlueShadowLight};
+    color: white;
+  }
+`;

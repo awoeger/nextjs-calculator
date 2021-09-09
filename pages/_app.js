@@ -15,7 +15,6 @@ function MyApp({ Component, pageProps }) {
             margin: 0;
             font-family: 'Spartan', sans-serif;
             font-size: 32px;
-            background: #505d84;
           }
         `}
       />
