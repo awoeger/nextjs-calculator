@@ -12,12 +12,67 @@ import {
   redToggle,
 } from '../util/sharedStyles';
 
+const header = css`
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .sliderRound {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${keypadBackground};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50px;
+  }
+
+  .sliderRound:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: ${redToggle};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .sliderRound {
+    background-color: ${keypadBackground};
+  }
+
+  input:focus + .sliderRound {
+    box-shadow: 0 0 1px ${keypadBackground};
+  }
+
+  input:checked + .sliderRound:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+`;
+
 const mainContainer = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 `;
 
 const outputContainer = css`
@@ -87,6 +142,15 @@ const calculatorContainer = css`
 
 export default function Home() {
   const [result, setResult] = useState('');
+  const [darkMode, setDarkMode] = useState(true);
+
+  const handleDarkModeClick = () => {
+    if (darkMode === true) {
+      setDarkMode(false);
+    } else {
+      setDarkMode(true);
+    }
+  };
 
   const handleClick = (e) => {
     setResult(result.concat(e.target.name));
@@ -116,7 +180,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <header></header>
+      <header css={header}>
+        <h1>Calc</h1>
+        <span>{darkMode === true ? 'Darkmode' : 'Lightmode'}</span>
+        <label className="switch">
+          <input
+            onClick={handleDarkModeClick}
+            type="checkbox"
+            value={darkMode}
+          ></input>
+          <span className="sliderRound"></span>
+        </label>
+      </header>
 
       <main>
         <section css={outputContainer}>
